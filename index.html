@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teach, Create, Celebrate | Dr. Constance Nichols</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #fff;
+      font-family: system-ui, -apple-system, sans-serif;
+      color: #111;
+    }
+
+    .site-header {
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .site-header a {
+      font-size: 13px;
+      color: #888;
+      text-decoration: none;
+    }
+
+    .site-header a:hover { color: #111; }
+
+    .g {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 3rem 2rem 6rem;
+    }
+
+    .gh { padding-bottom: 2.5rem; margin-bottom: 2.5rem; border-bottom: 1.5px solid #111; }
+
+    .gt {
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: #111;
+      margin-bottom: 1.5rem;
+    }
+
+    .gt span { font-weight: 300; }
+
+    .gd { font-size: 15px; color: #333; line-height: 1.85; max-width: 580px; }
+    .gd p { margin-bottom: 1rem; }
+    .gd p:last-child { margin-bottom: 0; }
+
+    .fi {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 3rem;
+      align-items: center;
+    }
+
+    .fp { font-size: 12px; color: #999; margin-right: 4px; }
+
+    .fb {
+      font-size: 12px;
+      padding: 5px 16px;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+      cursor: pointer;
+      background: #fff;
+      color: #555;
+      font-family: inherit;
+      transition: all 0.1s;
+    }
+
+    .fb:hover { border-color: #888; color: #111; }
+    .fb.on { background: #111; color: #fff; border-color: #111; }
+
+    .sm {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 1.75rem;
+    }
+
+    .pj { padding: 0 0 3.5rem; }
+
+    .pt {
+      font-size: 20px;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .ps {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .pw {
+      flex: 1;
+      min-width: 120px;
+      max-width: 190px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .pi {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border: 1px solid #e0e0e0;
+      border-radius: 2px;
+      overflow: hidden;
+      transition: transform 0.15s, box-shadow 0.15s;
+      display: block;
+    }
+
+    .pi img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pi svg { display: block; width: 100%; height: 100%; }
+
+    .pw:hover .pi {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+    }
+
+    .pw:hover .xh { opacity: 1; }
+
+    .xh {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 2px;
+      opacity: 0;
+      transition: opacity 0.15s;
+      pointer-events: none;
+    }
+
+    .no {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.85;
+      max-width: 560px;
+      margin-bottom: 1rem;
+    }
+
+    .no a { color: #0066cc; }
+
+    .sr { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .sn { font-size: 13px; font-weight: 600; color: #111; }
+    .sl { font-size: 12px; color: #0066cc; text-decoration: none; }
+    .sl:hover { text-decoration: underline; }
+
+    .ch { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem; }
+
+    .ck {
+      font-size: 11px;
+      padding: 3px 11px;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      color: #777;
+    }
+
+    .dv { height: 1px; background: #eee; margin-bottom: 3.5rem; }
+
+    /* Panel view */
+    .pview { max-width: 780px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+
+    .vbk {
+      font-size: 13px;
+      color: #0066cc;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      margin-bottom: 2rem;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .vbk:hover { text-decoration: underline; }
+
+    .vp {
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 3/4;
+      border: 1px solid #e0e0e0;
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .vp img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .vp svg { display: block; width: 100%; height: 100%; }
+
+    .vtl { font-size: 19px; font-weight: 600; color: #111; margin-bottom: 5px; }
+    .vsb { font-size: 12px; color: #999; margin-bottom: 1.25rem; }
+
+    .vpdf {
+      display: inline-block;
+      font-size: 13px;
+      color: #0066cc;
+      text-decoration: none;
+      margin-bottom: 1.25rem;
+    }
+
+    .vpdf:hover { text-decoration: underline; }
+
+    .vn { display: flex; gap: 10px; }
+
+    .vnb {
+      font-size: 12px;
+      padding: 6px 16px;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+      cursor: pointer;
+      background: #fff;
+      color: #555;
+      font-family: inherit;
+    }
+
+    .vnb:hover:not(:disabled) { border-color: #888; color: #111; }
+    .vnb:disabled { opacity: 0.35; cursor: default; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .gt { font-size: 32px; }
+      .ps { gap: 10px; }
+      .pw { min-width: 100px; max-width: 150px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://cnicholseduc.com">cnicholseduc.com</a>
+  <a href="https://cnicholseduc.com">Dr. Constance Nichols</a>
+</header>
+
+<div id="app"></div>
+
+<script>
+
+/* =============================================
+   PANEL SVGS
+   These are the designed panels for each project.
+   To use a real image or PDF instead, see the
+   ADDING REAL PANELS section below.
+============================================= */
+
+const SVG = {
+
+  /* --- Making Ideas Tangible: Panel 1 --- */
+  t1: `<svg viewBox='0 0 300 400' xmlns='http://www.w3.org/2000/svg' width='100%' height='100%'>
+    <rect width='300' height='400' fill='#fffbf0'/>
+    <rect width='300' height='68' fill='#e09020'/>
+    <text x='150' y='26' text-anchor='middle' font-size='11' font-weight='700' fill='#fff' font-family='system-ui,sans-serif' letter-spacing='2'>THE ASSIGNMENT</text>
+    <text x='150' y='51' text-anchor='middle' font-size='22' font-weight='700' fill='#fff' font-family='system-ui,sans-serif'>ZINE</text>
+    <rect x='38' y='88' width='100' height='148' rx='2' fill='#fff' stroke='#e8c070' stroke-width='1.5'/>
+    <rect x='162' y='88' width='100' height='148' rx='2' fill='#fff' stroke='#e8c070' stroke-width='1.5'/>
+    <rect x='147' y='88' width='6' height='148' fill='#f0d898'/>
+    <rect x='48' y='100' width='68' height='3' rx='1.5' fill='#e8d090'/>
+    <rect x='48' y='109' width='52' height='3' rx='1.5' fill='#e8d090'/>
+    <rect x='48' y='125' width='80' height='52' rx='2' fill='#f5d060'/>
+    <rect x='48' y='187' width='68' height='3' rx='1.5' fill='#e8d090'/>
+    <rect x='48' y='196' width='52' height='3' rx='1.5' fill='#e8d090'/>
+    <rect x='172' y='100' width='68' height='3' rx='1.5' fill='#e8d090'/>
+    <rect x='172' y='109' width='52' height='3' rx='1.5' fill='#e8d090'/>
+    <rect x='172' y='120' width='80' height='62' rx='2' fill='#b0d8c0'/>
+    <rect x='172' y='192' width='68' height='3' rx='1.5' fill='#e8d090'/>
+    <path d='M38 236 Q150 250 262 236' fill='none' stroke='#e8c070' stroke-width='1' stroke-dasharray='4,3'/>
+    <text x='150' y='274' text-anchor='middle' font-size='12' fill='#8b6020' font-family='system-ui,sans-serif' font-weight='600'>What if the prompt itself</text>
+    <text x='150' y='290' text-anchor='middle' font-size='12' fill='#8b6020' font-family='system-ui,sans-serif' font-weight='600'>was the artifact?</text>
+    <line x1='60' y1='310' x2='240' y2='310' stroke='#e8c070' stroke-width='0.75'/>
+    <text x='150' y='328' text-anchor='middle' font-size='10' fill='#a07838' font-family='system-ui,sans-serif'>Tactile, folded, handed to students.</text>
+    <rect x='0' y='372' width='300' height='28' fill='#e09020' opacity='0.12'/>
+    <text x='150' y='390' text-anchor='middle' font-size='9' fill='#a07838' font-family='system-ui,sans-serif'>Making Ideas Tangible · Pedagogy · Spring 2025</text>
+  </svg>`,
+
+  /* --- Making Ideas Tangible: Panel 2 --- */
+  t2: `<svg viewBox='0 0 300 400' xmlns='http://www.w3.org/2000/svg' width='100%' height='100%'>
+    <rect width='300' height='400' fill='#f0f8f4'/>
+    <rect width='300' height='68' fill='#3a8060'/>
+    <text x='150' y='26' text-anchor='middle' font-size='11' font-weight='700' fill='#fff' font-family='system-ui,sans-serif' letter-spacing='2'>VOCABULARY AS</text>
+    <text x='150' y='51' text-anchor='middle' font-size='22' font-weight='700' fill='#fff' font-family='system-ui,sans-serif'>LANDSCAPE</text>
+    <polygon points='150,86 50,248 250,248' fill='#3a806015' stroke='#3a8060' stroke-width='1.5'/>
+    <polygon points='150,108 72,248 228,248' fill='#3a806030' stroke='#3a8060' stroke-width='1'/>
+    <polygon points='150,132 96,248 204,248' fill='#3a806055' stroke='#3a8060' stroke-width='1'/>
+    <polygon points='150,158 114,248 186,248' fill='#3a8060'/>
+    <circle cx='150' cy='86' r='4' fill='#3a8060'/>
+    <text x='150' y='177' text-anchor='middle' font-size='10' fill='#fff' font-family='system-ui,sans-serif' font-weight='700'>OWN IT</text>
+    <text x='150' y='217' text-anchor='middle' font-size='9' fill='#fff' font-family='system-ui,sans-serif'>USE IT</text>
+    <text x='150' y='264' text-anchor='middle' font-size='10' fill='#2a6050' font-family='system-ui,sans-serif' font-weight='600'>ENCOUNTER</text>
+    <text x='150' y='294' text-anchor='middle' font-size='12' fill='#2a6050' font-family='system-ui,sans-serif' font-weight='600'>As the paper unfolds,</text>
+    <text x='150' y='310' text-anchor='middle' font-size='12' fill='#2a6050' font-family='system-ui,sans-serif' font-weight='600'>so does understanding.</text>
+    <text x='150' y='344' text-anchor='middle' font-size='10' fill='#3a7060' font-family='system-ui,sans-serif'>A mountain-shaped fold revealed</text>
+    <text x='150' y='357' text-anchor='middle' font-size='10' fill='#3a7060' font-family='system-ui,sans-serif'>vocabulary concepts layer by layer.</text>
+    <rect x='0' y='372' width='300' height='28' fill='#3a8060' opacity='0.1'/>
+    <text x='150' y='390' text-anchor='middle' font-size='9' fill='#3a7060' font-family='system-ui,sans-serif'>Making Ideas Tangible · Pedagogy · Spring 2025</text>
+  </svg>`,
+
+  /* --- Making Ideas Tangible: Panel 3 --- */
+  t3: `<svg viewBox='0 0 300 400' xmlns='http://www.w3.org/2000/svg' width='100%' height='100%'>
+    <rect width='300' height='400' fill='#fef2ee'/>
+    <rect width='300' height='68' fill='#b84830'/>
+    <text x='150' y='26' text-anchor='middle' font-size='11' font-weight='700' fill='#fff' font-family='system-ui,sans-serif' letter-spacing='2'>DISCIPLINARY</text>
+    <text x='150' y='51' text-anchor='middle' font-size='22' font-weight='700' fill='#fff' font-family='system-ui,sans-serif'>LITERACY</text>
+    <rect x='112' y='148' width='76' height='76' fill='#fff' stroke='#b84830' stroke-width='2'/>
+    <text x='150' y='189' text-anchor='middle' font-size='11' fill='#b84830' font-weight='700' font-family='system-ui,sans-serif'>THE TEXT</text>
+    <rect x='112' y='85' width='76' height='63' fill='#fff' stroke='#b84830' stroke-width='1.5'/>
+    <line x1='112' y1='148' x2='188' y2='148' stroke='#b84830' stroke-width='0.75' stroke-dasharray='4,3'/>
+    <text x='150' y='111' text-anchor='middle' font-size='10' fill='#8a3020' font-weight='700' font-family='system-ui,sans-serif'>READING</text>
+    <text x='150' y='127' text-anchor='middle' font-size='9' fill='#a04030' font-family='system-ui,sans-serif'>like a disciplinarian</text>
+    <rect x='112' y='224' width='76' height='63' fill='#fff' stroke='#b84830' stroke-width='1.5'/>
+    <line x1='112' y1='224' x2='188' y2='224' stroke='#b84830' stroke-width='0.75' stroke-dasharray='4,3'/>
+    <text x='150' y='251' text-anchor='middle' font-size='10' fill='#8a3020' font-weight='700' font-family='system-ui,sans-serif'>WRITING</text>
+    <rect x='50' y='148' width='62' height='76' fill='#fff' stroke='#b84830' stroke-width='1.5'/>
+    <line x1='112' y1='148' x2='112' y2='224' stroke='#b84830' stroke-width='0.75' stroke-dasharray='4,3'/>
+    <text x='81' y='184' text-anchor='middle' font-size='10' fill='#8a3020' font-weight='700' font-family='system-ui,sans-serif'>TALK</text>
+    <rect x='188' y='148' width='62' height='76' fill='#fff' stroke='#b84830' stroke-width='1.5'/>
+    <line x1='188' y1='148' x2='188' y2='224' stroke='#b84830' stroke-width='0.75' stroke-dasharray='4,3'/>
+    <text x='219' y='184' text-anchor='middle' font-size='10' fill='#8a3020' font-weight='700' font-family='system-ui,sans-serif'>TOOLS</text>
+    <text x='150' y='316' text-anchor='middle' font-size='12' fill='#8a3020' font-weight='600' font-family='system-ui,sans-serif'>Each fold, a new dimension.</text>
+    <rect x='0' y='372' width='300' height='28' fill='#b84830' opacity='0.1'/>
+    <text x='150' y='390' text-anchor='middle' font-size='9' fill='#903828' font-family='system-ui,sans-serif'>Making Ideas Tangible · Pedagogy · Spring 2025</text>
+  </svg>`,
+
+  /* --- NCUR: Panel 1 --- */
+  n1: `<svg viewBox='0 0 300 400' xmlns='http://www.w3.org/2000/svg' width='100%' height='100%'>
+    <rect width='300' height='400' fill='#1a2a4a'/>
+    <rect width='300' height='68' fill='#0a1828'/>
+    <text x='150' y='26' text-anchor='middle' font-size='11' font-weight='700' fill='#6a90c0' font-family='system-ui,sans-serif' letter-spacing='2'>INQUIRY &amp; NEED</text>
+    <text x='150' y='52' text-anchor='middle' font-size='16' font-weight='700' fill='#fff' font-family='system-ui,sans-serif'>From Aspiring Educators</text>
+    <line x1='20' y1='74' x2='280' y2='74' stroke='#2a4060' stroke-width='0.75'/>
+    <text x='150' y='105' text-anchor='middle' font-size='13' fill='#8ba8d8' font-family='system-ui,sans-serif'>How do we prepare</text>
+    <text x='150' y='122' text-anchor='middle' font-size='13' fill='#8ba8d8' font-family='system-ui,sans-serif'>preservice teachers to solve</text>
+    <text x='150' y='139' text-anchor='middle' font-size='13' fill='#8ba8d8' font-family='system-ui,sans-serif'>real problems in schools</text>
+    <text x='150' y='156' text-anchor='middle' font-size='13' fill='#8ba8d8' font-family='system-ui,sans-serif'>and communities?</text>
+    <rect x='20' y='178' width='260' height='1' fill='#2a4060'/>
+    <rect x='20' y='196' width='260' height='80' rx='4' fill='#243a5e'/>
+    <text x='32' y='218' font-size='10' fill='#6a90c0' font-family='system-ui,sans-serif' font-weight='700'>COURSE FRAMEWORK</text>
+    <text x='32' y='236' font-size='11' fill='#a0c0e8' font-family='system-ui,sans-serif'>Identify a real need in</text>
+    <text x='32' y='252' font-size='11' fill='#a0c0e8' font-family='system-ui,sans-serif'>schools or communities.</text>
+    <text x='32' y='268' font-size='11' fill='#a0c0e8' font-family='system-ui,sans-serif'>Then act.</text>
+    <text x='150' y='310' text-anchor='middle' font-size='12' fill='#6a90c0' font-family='system-ui,sans-serif' font-weight='600'>Teacher leadership is not</text>
+    <text x='150' y='328' text-anchor='middle' font-size='12' fill='#6a90c0' font-family='system-ui,sans-serif' font-weight='600'>learned. It is practiced.</text>
+    <rect x='0' y='372' width='300' height='28' fill='#0a1828'/>
+    <text x='150' y='390' text-anchor='middle' font-size='9' fill='#5a7aaa' font-family='system-ui,sans-serif'>Aspiring Educators to Advocates · Pedagogy · NCUR</text>
+  </svg>`,
+
+  /* --- NCUR: Panel 2 --- */
+  n2: `<svg viewBox='0 0 300 400' xmlns='http://www.w3.org/2000/svg' width='100%' height='100%'>
+    <rect width='300' height='400' fill='#fffdf8'/>
+    <rect width='300' height='52' fill='#d4860a'/>
+    <text x='150' y='22' text-anchor='middle' font-size='11' font-weight='700' fill='#fff' font-family='system-ui,sans-serif' letter-spacing='2'>THE WORK</text>
+    <text x='150' y='42' text-anchor='middle' font-size='14' font-weight='700' fill='#fff' font-family='system-ui,sans-serif'>Two Projects. Real Impact.</text>
+    <rect x='12' y='62' width='276' height='152' rx='3' fill='#fff8ee' stroke='#f0c070' stroke-width='1'/>
+    <text x='22' y='84' font-size='12' font-weight='700' fill='#8b5a10' font-family='system-ui,sans-serif'>Mini Portable Libraries</text>
+    <text x='22' y='99' font-size='9' fill='#a07030' font-family='system-ui,sans-serif'>Books for Hope Project</text>
+    <line x1='22' y1='107' x2='282' y2='107' stroke='#f0c070' stroke-width='0.5'/>
+    <text x='22' y='124' font-size='13' fill='#7a5010' font-family='system-ui,sans-serif' font-weight='700'>5,000+ books</text>
+    <text x='22' y='138' font-size='10' fill='#a07030' font-family='system-ui,sans-serif'>5 agencies · Pittsburgh to Erie</text>
+    <text x='22' y='152' font-size='10' fill='#a07030' font-family='system-ui,sans-serif'>Concept to reality: 4 months</text>
+    <text x='22' y='170' font-size='8' fill='#b08040' font-family='system-ui,sans-serif'>Dobransky · Brungard · Thomas · Beauchamp</text>
+    <text x='22' y='183' font-size='9' fill='#8b6020' font-family='system-ui,sans-serif'>SEL lit for youth in out-of-school placements</text>
+    <text x='22' y='197' font-size='9' fill='#8b6020' font-family='system-ui,sans-serif'>Partnered with 5 community agencies</text>
+    <rect x='12' y='224' width='276' height='136' rx='3' fill='#f0f7f4' stroke='#70b090' stroke-width='1'/>
+    <text x='22' y='246' font-size='12' font-weight='700' fill='#2a6040' font-family='system-ui,sans-serif'>Next Up Sports</text>
+    <text x='22' y='261' font-size='9' fill='#3a7050' font-family='system-ui,sans-serif'>Eliminating financial barriers to youth sports</text>
+    <line x1='22' y1='269' x2='282' y2='269' stroke='#70b090' stroke-width='0.5'/>
+    <text x='22' y='286' font-size='13' fill='#2a6040' font-family='system-ui,sans-serif' font-weight='700'>20+ scholarships awarded</text>
+    <text x='22' y='301' font-size='10' fill='#3a7050' font-family='system-ui,sans-serif'>501C established · 3.5 months concept to org</text>
+    <text x='22' y='318' font-size='8' fill='#4a8060' font-family='system-ui,sans-serif'>Foore · Lane</text>
+    <text x='22' y='333' font-size='9' fill='#2a6040' font-family='system-ui,sans-serif'>Networked with GCC Entrepreneurship</text>
+    <text x='22' y='346' font-size='9' fill='#2a6040' font-family='system-ui,sans-serif'>Program and Community Foundation</text>
+    <rect x='0' y='372' width='300' height='28' fill='#d4860a' opacity='0.1'/>
+    <text x='150' y='390' text-anchor='middle' font-size='9' fill='#a06010' font-family='system-ui,sans-serif'>Aspiring Educators to Advocates · Pedagogy · NCUR</text>
+  </svg>`,
+
+  /* --- NCUR: Panel 3 --- */
+  n3: `<svg viewBox='0 0 300 400' xmlns='http://www.w3.org/2000/svg' width='100%' height='100%'>
+    <rect width='300' height='400' fill='#f4f8f2'/>
+    <rect width='300' height='68' fill='#3a6a30'/>
+    <text x='150' y='26' text-anchor='middle' font-size='11' font-weight='700' fill='#fff' font-family='system-ui,sans-serif' letter-spacing='2'>LESSONS LEARNED</text>
+    <text x='150' y='51' text-anchor='middle' font-size='16' font-weight='700' fill='#c8e8b8' font-family='system-ui,sans-serif'>What the work revealed.</text>
+    <rect x='20' y='82' width='260' height='46' rx='3' fill='#fff' stroke='#90c878' stroke-width='1'/>
+    <text x='38' y='102' font-size='13' font-weight='700' fill='#2a5020' font-family='system-ui,sans-serif'>Mentorship matters.</text>
+    <text x='38' y='118' font-size='10' fill='#4a7040' font-family='system-ui,sans-serif'>At every scale, in every step.</text>
+    <rect x='20' y='138' width='260' height='46' rx='3' fill='#fff' stroke='#90c878' stroke-width='1'/>
+    <text x='38' y='158' font-size='13' font-weight='700' fill='#2a5020' font-family='system-ui,sans-serif'>Small steps compound.</text>
+    <text x='38' y='174' font-size='10' fill='#4a7040' font-family='system-ui,sans-serif'>Concept to reality in under 4 months.</text>
+    <rect x='20' y='194' width='260' height='46' rx='3' fill='#fff' stroke='#90c878' stroke-width='1'/>
+    <text x='38' y='214' font-size='13' font-weight='700' fill='#2a5020' font-family='system-ui,sans-serif'>Initiative can be taught.</text>
+    <text x='38' y='230' font-size='10' fill='#4a7040' font-family='system-ui,sans-serif'>And mentored. And chosen.</text>
+    <rect x='20' y='250' width='260' height='60' rx='3' fill='#2a5020'/>
+    <text x='38' y='272' font-size='11' font-weight='700' fill='#c8e8b8' font-family='system-ui,sans-serif'>Students are not passive</text>
+    <text x='38' y='288' font-size='11' font-weight='700' fill='#c8e8b8' font-family='system-ui,sans-serif'>participants in their learning.</text>
+    <text x='38' y='302' font-size='10' fill='#90c878' font-family='system-ui,sans-serif'>They are active contributors.</text>
+    <line x1='20' y1='325' x2='280' y2='325' stroke='#90c878' stroke-width='0.75' opacity='0.5'/>
+    <text x='150' y='344' text-anchor='middle' font-size='10' fill='#3a6030' font-family='system-ui,sans-serif'>Presented at NCUR to university professors</text>
+    <text x='150' y='358' text-anchor='middle' font-size='10' fill='#3a6030' font-family='system-ui,sans-serif'>as a model for student-driven course design.</text>
+    <rect x='0' y='372' width='300' height='28' fill='#3a6a30' opacity='0.1'/>
+    <text x='150' y='390' text-anchor='middle' font-size='9' fill='#3a6030' font-family='system-ui,sans-serif'>Aspiring Educators to Advocates · Pedagogy · NCUR</text>
+  </svg>`
+
+};
+
+
+/* =============================================
+   PROJECT DATA
+   To add a new project, copy one of these blocks
+   and paste it before the closing ] bracket.
+   Change the fields to match your new project.
+
+   FIELDS:
+   - id: give each project a unique number
+   - sem: the semester label, e.g. 'Fall 2025'
+   - title: the project title
+   - who: contributor name(s)
+   - li: a URL for LinkedIn or website, or null
+   - tags: one or more of ['Pedagogy','Community','Programs']
+   - note: your curator text (use \' for apostrophes)
+   - panels: list of panel keys from SVG above
+   - pdfs: list of PDF file paths, one per panel
+           e.g. ['panels/project-panel-1.pdf', ...]
+           or null if no PDF yet
+============================================= */
+
+const P = [
+
+  {
+    id: 1,
+    sem: 'Spring 2025',
+    title: 'Making Ideas Tangible',
+    who: 'Dr. Constance Nichols',
+    li: 'https://cnicholseduc.com',
+    tags: ['Pedagogy'],
+    note: "When students stopped engaging with digital handouts, the answer was not better handouts — it was a different kind of object altogether. A zine for one assignment. A paper mountain for vocabulary. A multi-directional fold for disciplinary literacy. Each artifact made an abstract concept physical, and modeled for students the kind of creative thinking being asked of them.",
+    panels: ['t1', 't2', 't3'],
+    pdfs: [null, null, null]
+  },
+
+  {
+    id: 2,
+    sem: 'Fall 2024',
+    title: 'From Aspiring Educators to Advocates for Leadership and Change',
+    who: 'Dobransky · Brungard · Thomas · Beauchamp · Foore · Lane',
+    li: null,
+    tags: ['Pedagogy', 'Community'],
+    note: 'A highlight of student-presented work at the <a href="https://www.cur.org/engage/ncur/" target="_blank">National Conference on Undergraduate Research</a>. The focus was on demonstrating to other university professors the power of student agency and choice in course design and projects.',
+    panels: ['n1', 'n2', 'n3'],
+    pdfs: [null, null, null]
+  }
+
+  /* ADD NEW PROJECTS ABOVE THIS LINE */
+
+];
+
+
+/* =============================================
+   TAG LIST
+   These are the browse filter buttons.
+   If you add a new tag to a project above,
+   add the same word here too.
+============================================= */
+
+const TAGS = ['Pedagogy', 'Community', 'Programs'];
+
+
+/* =============================================
+   GALLERY ENGINE
+   You do not need to edit below this line.
+============================================= */
+
+let activeTag = null;
+let view = 'gallery';
+let openProj = null;
+let openIdx = 0;
+
+function renderGallery() {
+  const filtered = activeTag ? P.filter(p => p.tags.includes(activeTag)) : P;
+  const sems = [...new Set(filtered.map(p => p.sem))];
+
+  let h = `<div class="g">
+    <div class="gh">
+      <div class="gt">Teach,<br><span>Create,</span><br>Celebrate</div>
+      <div class="gd">
+        <p>Hi! Thank you for visiting this site, a place designed to showcase and celebrate the work of students, educators, and community partners. You can think of this as part gallery, part workshop.</p>
+        <p>In many of my courses and in my community work I have learned to embrace the philosophy of Teach, Create, Celebrate. An idea I learned from the great Bill Strickland. When you embrace this idea amazing things happen in classrooms, schools, and communities. I get a front row seat to this process, and often think, "more people should know about this!" With that in mind I have created this little corner of the internet as a kind of "digital commons". It's a place where we can share the endeavors (large and small) that impact schools, communities, or teacher practice.</p>
+        <p>On behalf of my collaborators, thank you for taking the time to explore and celebrate this work — and all the potential it represents moving forward.</p>
+      </div>
+    </div>
+    <div class="fi">
+      <span class="fp">Browse:</span>`;
+
+  ['All', ...TAGS].forEach((t, i) => {
+    const real = i === 0 ? null : t;
+    h += `<button class="fb${activeTag === real ? ' on' : ''}" data-t="${real || ''}">${t}</button>`;
+  });
+
+  h += `</div>`;
+
+  sems.forEach((sem, si) => {
+    if (si > 0) h += `<div class="dv"></div>`;
+    h += `<p class="sm">${sem}</p>`;
+
+    filtered.filter(p => p.sem === sem).forEach(p => {
+      const chips = p.tags.map(t => `<span class="ck">${t}</span>`).join('');
+      const li = p.li ? `<a href="${p.li}" class="sl" target="_blank">Website ↗</a>` : '';
+      const panels = p.panels.map((k, i) => `
+        <div class="pw" data-id="${p.id}" data-i="${i}">
+          <div class="pi">${SVG[k]}</div>
+          <span class="xh">expand</span>
+        </div>`).join('');
+
+      h += `<div class="pj">
+        <div class="ch">${chips}</div>
+        <div class="pt">${p.title}</div>
+        <div class="ps">${panels}</div>
+        <p class="no">${p.note}</p>
+        <div class="sr"><span class="sn">${p.who}</span>${li}</div>
+      </div>`;
+    });
+  });
+
+  h += `</div>`;
+  document.getElementById('app').innerHTML = h;
+
+  document.querySelectorAll('.fb').forEach(b => {
+    b.onclick = () => { activeTag = b.dataset.t || null; renderGallery(); };
+  });
+
+  document.querySelectorAll('.pw').forEach(el => {
+    el.onclick = () => {
+      openProj = P.find(p => p.id === parseInt(el.dataset.id));
+      openIdx = parseInt(el.dataset.i);
+      view = 'panel';
+      renderPanel();
+    };
+  });
+}
+
+function renderPanel() {
+  const p = openProj;
+  const count = p.panels.length;
+  const pdfLink = p.pdfs && p.pdfs[openIdx]
+    ? `<a href="${p.pdfs[openIdx]}" class="vpdf" target="_blank">View full size / PDF ↗</a>`
+    : `<span class="vpdf" style="color:#999;">PDF coming soon</span>`;
+
+  const h = `<div class="pview">
+    <button class="vbk" id="vb">← Back to gallery</button>
+    <div class="vp">${SVG[p.panels[openIdx]]}</div>
+    <div class="vtl">${p.title}</div>
+    <div class="vsb">Panel ${openIdx + 1} of ${count} · ${p.who}</div>
+    ${pdfLink}
+    <div class="vn">
+      <button class="vnb" id="vp" ${openIdx === 0 ? 'disabled' : ''}>← Previous</button>
+      <button class="vnb" id="vn" ${openIdx === count - 1 ? 'disabled' : ''}>Next →</button>
+    </div>
+  </div>`;
+
+  document.getElementById('app').innerHTML = h;
+
+  document.getElementById('vb').onclick = () => { view = 'gallery'; renderGallery(); };
+  const prev = document.getElementById('vp');
+  const next = document.getElementById('vn');
+  if (prev) prev.onclick = () => { if (openIdx > 0) { openIdx--; renderPanel(); } };
+  if (next) next.onclick = () => { if (openIdx < count - 1) { openIdx++; renderPanel(); } };
+}
+
+renderGallery();
+
+</script>
+</body>
+</html>
